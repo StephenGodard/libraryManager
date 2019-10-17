@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WindowManager extends JFrame {
 
@@ -37,6 +39,7 @@ public class WindowManager extends JFrame {
         //implementation du menu a completer
         file.add(Open);
         file.add(close);
+        close.addActionListener(new FileListener());
 
         Edition.add(Sauvegarder);
         Edition.add(SauvegarderSous);
@@ -55,6 +58,7 @@ public class WindowManager extends JFrame {
         panTable.setBorder((BorderFactory.createTitledBorder("Tableau des livres")));
         JTable tableau = new JTable(new ModelOfTable());
         panTable.add(tableau, BorderLayout.CENTER);
+
 
 
 
@@ -148,6 +152,18 @@ public class WindowManager extends JFrame {
         this.getContentPane().add(content, BorderLayout.WEST);
         this.getContentPane().add(Form,BorderLayout.EAST);
         pack();
+    }
+
+    class FileListener implements ActionListener{
+        //Redéfinition de la méthode actionPerformed()
+        public void actionPerformed(ActionEvent e) {
+
+            if(e.getSource()==close){
+                System.exit(0);
+                
+            }
+
+        }
     }
 
 
